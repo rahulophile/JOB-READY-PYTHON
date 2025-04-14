@@ -1,0 +1,38 @@
+# Instructions for Setting Up Python in VS Code
+
+1. **Install Python**:
+    - Download and install Python from the official website: https://www.python.org/downloads/
+    - Ensure you check the box to add Python to your PATH during installation.
+
+2. **Install Visual Studio Code**:
+    - Download and install VS Code from: https://code.visualstudio.com/
+
+3. **Install the Python Extension**:
+    - Open VS Code.
+    - Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or pressing `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (Mac).
+    - Search for "Python" and install the extension provided by Microsoft.
+
+4. **Verify Python Installation**:
+    - Open a terminal in VS Code by pressing `Ctrl+`` (Windows/Linux) or `Cmd+`` (Mac).
+    - Type `python --version` or `python3 --version` to verify Python is installed.
+
+5. **Set Python Interpreter**:
+    - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open the Command Palette.
+    - Type `Python: Select Interpreter` and select the appropriate Python interpreter from the list.
+
+6. **Create a Python File**:
+    - Create a new file with a `.py` extension (e.g., `hello.py`).
+    - Write a simple Python script, such as:
+      ```python
+      print("Hello, World!")
+      ```
+
+7. **Run the Python File**:
+    - Open the Python file in VS Code.
+    - Click the "Run" button at the top-right corner or press `F5` to execute the script.
+
+8. **Install Additional Packages (Optional)**:
+    - Use `pip` to install additional Python packages as needed.
+    - Example: `pip install numpy`
+
+Your Python environment in VS Code is now ready!
