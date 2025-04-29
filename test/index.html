@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTEL Cloud Computing Q&A</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <!-- Fixed Header -->
+        <div id="quiz-header">
+            <h1>NPTEL Cloud Computing Assignments</h1>
+            <button id="theme-toggle-btn">Toggle Theme</button>
+        </div>
+
+        <!-- Fixed Metadata -->
+        <div id="question-metadata">
+            <span id="week-info">Week Loading...</span> |
+            <span id="question-num-info">Question Loading...</span> |
+            <span id="question-source">Source: Loading...</span>
+        </div>
+        <hr class="header-divider">
+
+        <!-- Scrollable Content Area -->
+        <div id="content-area">
+            <div id="question-area">
+                <p id="question-text">Loading question...</p>
+            </div>
+            <ul id="options-list">
+                <li>Loading options...</li>
+            </ul>
+        </div>
+
+        <!-- Fixed Footer -->
+        <div id="quiz-footer">
+            <hr class="footer-divider">
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="navigation">
+                <button id="prev-btn" disabled>« Previous</button>
+                <span id="total-questions-info">Total: ...</span>
+                <button id="next-btn">Next »</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to your script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
