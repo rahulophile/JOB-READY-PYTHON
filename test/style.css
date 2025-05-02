@@ -1,37 +1,109 @@
+/* === Base Styles (Desktop First) === */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     font-family: sans-serif;
     background-color: #f0f0f0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to top */
+    align-items: center; /* Center vertically by default now */
     min-height: 100vh;
-    padding-top: 20px; /* Add some padding at the top */
+    padding: 15px; /* Default padding */
     margin: 0;
+    overflow: hidden; /* PREVENT BODY SCROLLING */
 }
 
 .quiz-container {
     background-color: #ffffff;
-    padding: 25px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 700px;
-    text-align: left; /* Align text left inside container */
+    width: 95%; /* Responsive width */
+    max-width: 700px; /* Max width */
+    height: 95vh; /* Use viewport height */
+    max-height: 800px; /* Optional max pixel height */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    flex-shrink: 0;
 }
 
-.question-box {
-    border: 1px solid #ddd;
+/* Week tabs container */
+.week-tabs {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+    /* Optional: Add scroll if too many tabs */
+    /* max-height: 70px; */
+    /* overflow-y: auto; */
+}
+
+.tab-label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.week-tab {
+    padding: 6px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    text-align: center;
+}
+
+.week-tab:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+.week-tab.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+    font-weight: bold;
+}
+
+
+/* Scrollable Area for Question + Options */
+.question-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid #eee;
     border-radius: 5px;
-    margin-bottom: 20px;
     padding: 15px;
     background-color: #fafafa;
+    margin-bottom: 15px;
 }
+
+/* Box inside scroll area */
+.question-box {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
 
 #question-header {
     font-size: 0.9em;
@@ -44,18 +116,16 @@ h1 {
 
 #question-text {
     font-size: 1.1em;
+    font-weight: bold;
     color: #333;
     margin-bottom: 20px;
-    max-height: 250px; /* Fixed height for question text area */
-    overflow-y: auto;  /* Enable vertical scroll if content overflows */
-    padding-right: 10px; /* Add padding for scrollbar */
     line-height: 1.6;
 }
 
 #options-container {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between options */
+    gap: 10px;
 }
 
 .option {
@@ -74,25 +144,23 @@ h1 {
 }
 
 .option.correct {
-    background-color: #d4edda; /* Light green */
+    background-color: #d4edda;
     border-color: #c3e6cb;
-    color: #155724; /* Dark green */
-    font-weight: bold;
+    color: #155724;
 }
 
 .option.incorrect {
-    background-color: #f8d7da; /* Light red */
+    background-color: #f8d7da;
     border-color: #f5c6cb;
-    color: #721c24; /* Dark red */
+    color: #721c24;
 }
 
-/* Style to disable further clicks after selection */
 .option.disabled {
     cursor: default;
     opacity: 0.9;
 }
 .option.disabled:hover {
-     background-color: #f9f9f9; /* Keep original on hover when disabled */
+     background-color: #f9f9f9;
      border-color: #ccc;
 }
 .option.correct.disabled:hover {
@@ -104,11 +172,20 @@ h1 {
      border-color: #f5c6cb;
 }
 
+.option.correct strong,
+.option.incorrect strong {
+    font-weight: bold;
+}
+
 
 .navigation {
     display: flex;
     justify-content: space-between;
-    margin-top: 25px;
+    margin-top: 0;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .navigation button {
@@ -131,34 +208,219 @@ h1 {
     cursor: not-allowed;
 }
 
+
 .feedback {
-    margin-top: 15px;
+    margin-top: 10px;
     font-weight: bold;
-    min-height: 20px; /* Reserve space for feedback */
+    min-height: 20px;
+    padding-left: 0;
+    flex-shrink: 0;
 }
 
 .source-indicator {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 0.8em;
     color: #888;
     text-align: right;
+    padding-right: 0;
+    flex-shrink: 0;
 }
 
-/* Basic Scrollbar Styling (Optional) */
-#question-text::-webkit-scrollbar {
-    width: 8px;
+
+.footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
 }
 
-#question-text::-webkit-scrollbar-track {
+.footer-link {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Scrollbar Styling */
+.question-scroll-area::-webkit-scrollbar {
+    width: 10px;
+}
+.question-scroll-area::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border-radius: 4px;
+    border-radius: 5px;
 }
-
-#question-text::-webkit-scrollbar-thumb {
+.question-scroll-area::-webkit-scrollbar-thumb {
     background: #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+}
+.question-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
 
-#question-text::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
+
+/* ========================================== */
+/* === Media Queries for Responsiveness === */
+/* ========================================== */
+
+/* --- Tablets and Larger Phones --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduced padding */
+        align-items: center; /* Keep centered for tablet */
+    }
+
+    .quiz-container {
+        padding: 15px;
+        width: 95%;
+        height: calc(100vh - 20px); /* Adjust height */
+        max-height: none;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+     .week-tabs {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        gap: 6px;
+    }
+     .week-tab {
+        padding: 5px 10px;
+        font-size: 0.85em;
+    }
+     .tab-label {
+        font-size: 0.85em;
+     }
+
+
+    .question-scroll-area {
+        padding: 12px;
+        margin-bottom: 10px;
+        /* Flex grow handles height */
+    }
+
+     #question-text {
+        font-size: 1.0em; /* Smaller text */
+        margin-bottom: 15px;
+    }
+
+    .option {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .navigation button {
+        padding: 9px 15px;
+        font-size: 0.95em;
+    }
+     .navigation {
+         padding-top: 10px;
+     }
+
+    .footer {
+        font-size: 0.85em;
+        margin-top: 15px;
+        padding-top: 8px;
+    }
+}
+
+/* --- Smaller Phones --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Minimal padding */
+        align-items: center; /* Keep centered */
+        background: rgb(182, 181, 181);
+    }
+
+     .quiz-container {
+        padding: 10px;
+        width: 100%; /* Use full width */
+        height: calc(70vh - 10px); /* Almost full height */
+        border-radius: 10px; /* Remove radius for edge-to-edge */
+        border: 1px solid #b1b1b1;
+    }
+
+     h1 {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+    }
+
+     .week-tabs {
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        gap: 4px;
+        justify-content: flex-start; /* Start align tabs */
+        overflow-x: auto; /* Allow horizontal scroll for tabs */
+        padding-left: 5px;
+        padding-right: 5px;
+        /* Add scrollbar styling for tabs if desired */
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #ccc #f1f1f1; /* Firefox */
+    }
+     /* Webkit scrollbar for tabs */
+    .week-tabs::-webkit-scrollbar { height: 5px; }
+    .week-tabs::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px;}
+    .week-tabs::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px;}
+    .week-tabs::-webkit-scrollbar-thumb:hover { background: #aaa; }
+
+     .week-tab {
+         padding: 4px 8px;
+         font-size: 0.8em;
+         flex-shrink: 0; /* Prevent tabs shrinking */
+     }
+     .tab-label {
+         display: none; /* Hide label */
+     }
+
+    .question-scroll-area {
+        padding: 10px;
+        margin-bottom: 8px;
+        /* Flex grow handles height */
+    }
+
+     #question-text {
+        font-size: 0.95em;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+     .option {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+
+    #options-container {
+        gap: 6px;
+    }
+
+     .navigation {
+         padding-top: 8px;
+     }
+
+     .navigation button {
+        padding: 7px 12px;
+        font-size: 0.85em;
+    }
+
+     .feedback {
+         margin-top: 5px;
+     }
+     .source-indicator {
+         display: none; /* Hide source indicator */
+     }
+
+     .footer {
+        font-size: 0.75em;
+        margin-top: 10px;
+        padding-top: 6px;
+    }
 }
